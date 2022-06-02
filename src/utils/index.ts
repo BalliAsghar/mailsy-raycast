@@ -2,6 +2,17 @@ import axios from "axios";
 import { LocalStorage } from "@raycast/api";
 import { Clipboard, showHUD } from "@raycast/api";
 
+const clearLocalStorage = async () => {
+  const account = {
+    email: "",
+    password: "",
+    token: "",
+    id: "",
+  };
+
+  await LocalStorage.setItem("account", JSON.stringify(account));
+};
+
 export const createAccount = async () => {
   const storage = await LocalStorage.allItems();
 
@@ -69,7 +80,7 @@ export const fetchMessages = async () => {
     showHUD("Account not created");
     return;
   }
-
+  console.log(account.id);
   try {
     const { data } = await axios.get("https://api.mail.tm/messages", {
       headers: {
@@ -84,5 +95,49 @@ export const fetchMessages = async () => {
     console.log(error);
   }
 };
-const deleteAccount = async () => {};
-const showDeails = async () => {};
+export const deleteAccount = async () => {
+  // get all the items from local storage
+  const storage = await LocalStorage.allItems();
+  // parse storage
+  const account = JSON.parse(storage.account);
+
+  if (!account.email) {
+    showHUD("Account not created");
+    return;
+  }
+
+  try {
+    await axios.delete(`https://api.mail.tm/accounts/${account.id}`, {
+      headers: {
+        Authorization: `Bearer ${account.token}`,
+      },
+    });
+
+    await clearLocalStorage();
+
+    showHUD("Account deleted successfully");
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const ShowInfo = async () => {
+  // get all the items from local storage
+  const storage = await LocalStorage.allItems();
+  // parse storage
+  const account = JSON.parse(storage.account);
+
+  if (!account.email) {
+    showHUD("Account not created");
+    return;
+  }
+  try {
+    // get the account details
+    const { data } = await axios.get(`https://api.mail.tm/accounts/${account.id}`, {
+      headers: {
+        Authorization: `Bearer ${account.token}`,
+      },
+    });
+
+    return data;
+  } catch (error) {}
+};

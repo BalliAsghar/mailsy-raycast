@@ -16,6 +16,11 @@ export default function Command() {
         response();
     }, []);
 
+
+if(messages.length === 0) {
+    return <Detail markdown={`# No Emails`}/>
+}
+
     return (
         <List
         isLoading={loading}
