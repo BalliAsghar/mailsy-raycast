@@ -139,3 +139,27 @@ export const ShowInfo = async () => {
     return data;
   } catch (error) {}
 };
+
+export const openEmail = async (id: string) => {
+  // get all the items from local storage
+  const storage = await LocalStorage.allItems();
+  // parse storage
+  const account = JSON.parse(storage.account);
+
+  if (!account.email) {
+    return false;
+  }
+
+  try {
+    // get the account details
+    const { data } = await axios.get(`https://api.mail.tm/messages/${id}`, {
+      headers: {
+        Authorization: `Bearer ${account.token}`,
+      },
+    });
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
