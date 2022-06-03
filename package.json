@@ -12,7 +12,7 @@
   "commands": [
     {
       "name": "gen",
-      "title": "Temporary Email",
+      "title": " Generate Temporary Email",
       "subtitle": "Generate a Temporary Email",
       "description": "Create a new email address",
       "mode": "no-view"
@@ -26,15 +26,15 @@
     },
     {
       "name": "delete",
-      "title": "delete Temporary Email",
-      "subtitle": "Delete a Temporary Email",
+      "title": "delete",
+      "subtitle": "Temporary Email",
       "description": "Delete a email address",
       "mode": "no-view"
     },
     {
       "name": "info",
-      "title": "About Temporary Email",
-      "subtitle": "About Temporary Email",
+      "title": "About",
+      "subtitle": "Temporary Email",
       "description": "About Temporary Email",
       "mode": "view"
     }
