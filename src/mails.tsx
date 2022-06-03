@@ -35,8 +35,6 @@ export default function Command() {
 
   if (error) return <Detail markdown={error} />;
 
-  if (messages.length === 0) return <Detail markdown={`# No Emails`} />;
-
   return (
     <List isLoading={loading} navigationTitle="Mails">
       {messages.map((item) => (
