@@ -1,19 +1,25 @@
-import { List, Icon, Action, ActionPanel } from "@raycast/api";
+import { List, Icon, Detail, Action, ActionPanel } from "@raycast/api";
 import { useEffect, useState } from "react";
 import { ShowInfo } from "./utils";
 export default function Command() {
   const [info, setInfo] = useState<any>({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<any>("");
 
   useEffect(() => {
     async function response() {
-      const emails = await ShowInfo();
-      console.log(emails);
-      setInfo(emails);
+      const info = await ShowInfo();
+
+      !info && setError("# Create Account First");
+
+      setInfo(info);
+
       setLoading(false);
     }
     response();
   }, []);
+
+  if (error) return <Detail markdown={error} />;
 
   return (
     <List isLoading={loading} navigationTitle="Mails">

@@ -77,8 +77,6 @@ export const fetchMessages = async () => {
   const account = JSON.parse(storage.account);
 
   if (!account.email) {
-    showHUD("Account not created");
-    await closeMainWindow({ clearRootSearch: true });
     return false;
   }
 
@@ -128,8 +126,7 @@ export const ShowInfo = async () => {
   const account = JSON.parse(storage.account);
 
   if (!account.email) {
-    showHUD("Account not created");
-    return;
+    return false;
   }
   try {
     // get the account details

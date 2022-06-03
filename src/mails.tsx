@@ -8,12 +8,12 @@ export default function Command() {
 
   useEffect(() => {
     async function response() {
-      setLoading(true);
       const emails = await fetchMessages();
 
       !emails && setError("# Create Account First");
 
       setMessages(emails);
+      setLoading(false);
     }
     response();
   }, []);
