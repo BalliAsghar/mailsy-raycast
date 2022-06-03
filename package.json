@@ -3,38 +3,39 @@
   "name": "mailsy",
   "title": "Mailsy",
   "description": "⚡️ Quickly generate a disposable email",
-  "icon": "command-icon.png",
+  "icon": "send.png",
   "author": "BalliAsghar",
   "categories": [
-    "Communication"
+    "Communication",
+    "Web"
   ],
   "license": "MIT",
   "commands": [
     {
       "name": "gen",
-      "title": " Generate Temporary Email",
-      "subtitle": "Generate a Temporary Email",
+      "title": "Generate Temporary Email",
+      "subtitle": "Mailsy",
       "description": "Create a new email address",
       "mode": "no-view"
     },
     {
       "name": "mails",
-      "title": "Mails",
-      "subtitle": "Fetch Mails",
+      "title": "Fetch E-mails",
+      "subtitle": "Mailsy",
       "description": "Fetch all emails",
       "mode": "view"
     },
     {
       "name": "delete",
-      "title": "delete",
-      "subtitle": "Temporary Email",
+      "title": "Delete Temporary Email Account",
+      "subtitle": "Mailsy",
       "description": "Delete a email address",
       "mode": "no-view"
     },
     {
       "name": "info",
-      "title": "About",
-      "subtitle": "Temporary Email",
+      "title": "Account Information",
+      "subtitle": "Temporary Email account",
       "description": "About Temporary Email",
       "mode": "view"
     }
