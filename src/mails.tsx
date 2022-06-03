@@ -36,7 +36,7 @@ export default function Command() {
           ]}
           actions={
             <ActionPanel>
-              <Action.Push title={item.subject} target={<Email id={item.id} />} />
+              <Action.Push title={"Open Email"} target={<Email id={item.id} />} />
             </ActionPanel>
           }
         />
@@ -47,16 +47,18 @@ export default function Command() {
 
 function Email({ id }: { id: string }) {
   const [email, setEmail] = useState<string>();
+  const [subject, setSubject] = useState<string>();
 
   useEffect(() => {
     async function response() {
       const email = await openEmail(id);
 
       setEmail(email.text);
+      setSubject(email.subject);
     }
     response();
   }),
     [id];
 
-  return <Detail markdown={email} isLoading={!email} navigationTitle={`Email ${id}`}></Detail>;
+  return <Detail markdown={email} isLoading={!email} navigationTitle={subject}></Detail>;
 }
