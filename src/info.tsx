@@ -1,4 +1,4 @@
-import { Detail, List, Icon } from "@raycast/api";
+import { List, Icon, Action, ActionPanel } from "@raycast/api";
 import { useEffect, useState } from "react";
 import {ShowInfo} from "./utils";
 export default function Command() {
@@ -33,6 +33,11 @@ export default function Command() {
           key={info.address}
           title={"Email:"}
           subtitle={info.address}
+          actions={
+            <ActionPanel title="Actions">
+             <Action.CopyToClipboard content  ={info.address} />
+          </ActionPanel>
+          }
         />
         <List.Item
         icon={Icon.Calendar}
