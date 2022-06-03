@@ -1,6 +1,6 @@
 import axios from "axios";
 import { LocalStorage } from "@raycast/api";
-import { Clipboard, showHUD } from "@raycast/api";
+import { Clipboard, showHUD, closeMainWindow } from "@raycast/api";
 
 const clearLocalStorage = async () => {
   const account = {
@@ -78,9 +78,10 @@ export const fetchMessages = async () => {
 
   if (!account.email) {
     showHUD("Account not created");
-    return;
+    await closeMainWindow({ clearRootSearch: true });
+    return false;
   }
-  console.log(account.id);
+
   try {
     const { data } = await axios.get("https://api.mail.tm/messages", {
       headers: {
