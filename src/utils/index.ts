@@ -18,7 +18,7 @@ export const createAccount = async () => {
 
   // parse storage
   const account = JSON.parse(storage.account);
-  console.log(account.email);
+
   if (account.email) {
     showHUD("Account Already Created");
     return;
