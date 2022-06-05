@@ -3,6 +3,7 @@ import { LocalStorage } from "@raycast/api";
 import { Clipboard, showHUD } from "@raycast/api";
 import path from "path";
 import fs from "fs/promises";
+
 const clearLocalStorage = async () => {
   const account = {
     email: "",
@@ -13,9 +14,6 @@ const clearLocalStorage = async () => {
 
   await LocalStorage.setItem("account", JSON.stringify(account));
 };
-
-// current directory
-const dir = path.dirname(__filename);
 
 export const createAccount = async () => {
   const storage = await LocalStorage.allItems();
@@ -163,6 +161,9 @@ export const openEmail = async (id: string) => {
         Authorization: `Bearer ${account.token}`,
       },
     });
+
+    // current directory
+    const dir = path.dirname(__filename);
 
     //write to file
     await fs.writeFile(`${dir}/assets/email.html`, data.html[0]);
