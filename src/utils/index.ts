@@ -93,8 +93,6 @@ export const fetchMessages = async () => {
 
     const email = data["hydra:member"];
 
-    console.log(email);
-
     return email;
   } catch (error) {
     console.log(error);
