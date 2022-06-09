@@ -68,7 +68,9 @@ export const createAccount = async () => {
 
 export const fetchMessages = async () => {
   if (!(await checkLocalStorage())) {
-    return showHUD("No account found");
+    showHUD("No account found");
+
+    return false;
   }
 
   const storage = await LocalStorage.allItems();
@@ -92,7 +94,8 @@ export const fetchMessages = async () => {
 };
 export const deleteAccount = async () => {
   if (!(await checkLocalStorage())) {
-    return showHUD("No account found");
+    showHUD("No account found");
+    return false;
   }
 
   const storage = await LocalStorage.allItems();
@@ -115,7 +118,8 @@ export const deleteAccount = async () => {
 };
 export const ShowInfo = async () => {
   if (!(await checkLocalStorage())) {
-    return showHUD("No account found");
+    showHUD("No account found");
+    return false;
   }
 
   const storage = await LocalStorage.allItems();
